@@ -25,7 +25,7 @@ def is_image(file):
 def main():
     #sys.argv[1]
     # Check if file path is image
-    if(not is_image(args.file)):
+    if(not is_image((args.file).lower())):
         print("Invalid file.")
         return -1
     
@@ -53,7 +53,8 @@ def main():
 
     # Combine grid and gradient
     grid.paste(gradient, (0, start_y), gradient)
-    grid.show()
+    #grid.show()
+    grid.save("output.png", "PNG")
 
 if __name__ == '__main__':
     main()
