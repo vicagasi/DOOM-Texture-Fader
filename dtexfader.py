@@ -1,25 +1,36 @@
 import os
 import sys 
+import argparse
 from PIL import Image, ImageDraw
 
+# Consts
 rows = 4
 cols = 1
 gradient_divider = 2
 
+# Parse
+parser = argparse.ArgumentParser()
+parser = argparse.ArgumentParser()
+parser.add_argument("file", help="the image to be modified")
+args = parser.parse_args()
+
+# Valid image types
 img = (".jpg", ".jpeg", ".jfif", ".pjpeg", ".pjp", ".png",
        ".gif", ".webp", ".svg", ".apng", ".avif")
 
+# Checks if file is a valid image type
 def is_image(file):
     return os.path.splitext(file)[1] in img
 
 def main():
+    #sys.argv[1]
     # Check if file path is image
-    if(not is_image(sys.argv[1])):
+    if(not is_image(args.file)):
         print("Invalid file.")
         return -1
     
     # Get img and it's palette
-    img = Image.open(sys.argv[1])
+    img = Image.open(args.file)
     img = img.convert('RGBA')
     img_w, img_h = img.size
 
